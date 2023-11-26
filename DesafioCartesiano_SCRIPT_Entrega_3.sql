@@ -391,3 +391,10 @@ FROM Jogador_arma a
 FULL JOIN Armas b ON b.id_arma = a.id_arma 
 GROUP BY b.id_arma
 ORDER BY b.id_arma ASC;
+
+-- 11) Qual o catálogo de ARMAS do jogo e quantos jogadores tem cada uma delas? 
+SELECT b.nome AS Arma, COUNT(a.id_arma) AS num_jog_com_ela
+FROM Jogador_arma a
+FULL JOIN Armas b ON b.id_arma = a.id_arma 
+GROUP BY b.id_arma
+ORDER BY b.id_arma ASC;
