@@ -13,6 +13,8 @@
     { "src": "/desafio/(.*)", "dest": "/src/index.js" },
     { "src": "/partida/(.*)", "dest": "/src/index.js" },
     { "src": "/armas/(.*)", "dest": "/src/index.js" },
+    { "src": "/skins/(.*)", "dest": "/src/index.js" },
+    { "src": "/historico/(.*)", "dest": "/src/index.js" },
     { "src": "/(.*)", "dest": "/src/index.js" }
   ]
 }
