@@ -20,7 +20,7 @@ connect();
 // ====================== CRUD JOGADOR ========================================
 async function selectJogadores(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Jogador;');
+  const res = await client.query('SELECT * FROM get_all_jogadores;');
   return res.rows;
 }
 
@@ -62,7 +62,7 @@ async function deleteJogador(nickname){
 // ============================ CRUD ASSUNTO ==============================
 async function selectAssuntos(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Assunto;');
+  const res = await client.query('SELECT * FROM get_all_assunto;');
   return res.rows;
 }
 
@@ -103,7 +103,7 @@ async function deleteAssunto(id){
 // ======================= CRUD PROBLEMA ============================
 async function selectProblemas(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Problema;');
+  const res = await client.query('SELECT * FROM get_all_problemas;');
   return res.rows;
 }
 
@@ -144,7 +144,7 @@ async function deleteProblema(id){
 // ======================= CRUD DESAFIO ============================
 async function selectDesafios(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Desafio;');
+  const res = await client.query('SELECT * FROM get_all_desafios;');
   return res.rows;
 }
 
@@ -185,7 +185,7 @@ async function deleteDesafio(id){
 // ======================= CRUD PARTIDA ============================
 async function selectPartidas(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Partida;');
+  const res = await client.query('SELECT * FROM get_all_partidas;');
   return res.rows;
 }
 
@@ -226,7 +226,7 @@ async function deletePartida(id){
 // ======================= CRUD ARMAS ============================
 async function selectArmas(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Armas;');
+  const res = await client.query('SELECT * FROM get_all_armas;');
   return res.rows;
 }
 
@@ -285,7 +285,7 @@ async function insertArmaJogador(nickname, arma){
 // ======================= CRUD SKIN =============================
 async function selectSkins(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Skins;');
+  const res = await client.query('SELECT * FROM get_all_skins;');
   return res.rows;
 }
 
@@ -344,7 +344,7 @@ async function insertSkinJogador(nickname, skin){
 // ======================= CRUD HISTORICO =============================
 async function selectHistoricos(){
   const client = await connect();
-  const res = await client.query('SELECT * FROM Historico;');
+  const res = await client.query('SELECT * FROM get_all_historico;');
   return res.rows;
 }
 
