@@ -7,6 +7,9 @@ async function connect(){
   const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require",
   })
+  // const pool = new Pool({
+  //   connectionString: process.env.POSTGRES_URL,
+  // })
 
   global.connection = pool;
   return pool.connect();
@@ -379,6 +382,20 @@ async function deleteHistorico(id){
   await client.query(sql, values);
 }
 
+// ======================= HISTORICO-JOGADOR =================================
+async function selectHistoricoJogador(nickname){
+  const client = await connect();
+  const sql = `
+    SELECT H.id_jogador, P.*
+    FROM Partida P
+    JOIN Historico H ON H.id_partida = P.id_partida
+    WHERE H.id_jogador=$1;
+  `
+  const values = [nickname];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
 module.exports = {
   selectJogadores,
   selectJogador,
@@ -423,5 +440,6 @@ module.exports = {
   selectHistorico,
   insertHistorico,
   updateHistorico,
-  deleteHistorico
+  deleteHistorico,
+  selectHistoricoJogador
 }
