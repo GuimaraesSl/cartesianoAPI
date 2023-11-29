@@ -459,12 +459,22 @@ app.delete("/historico/:id", async (req, res) => {
   }
 })
 
-// ======================= CRUD HISTORICO =================================
+// ======================= HISTORICO JOGADOR =================================
 // ROTA HISTORICO BY JOGADOR
 app.get("/:nickname/historico", async (req, res) => {
   try{
     const asw = await db.selectHistoricoJogador(req.params.nickname);
     return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+})
+
+// ======================= CREATE HISTORICO && PARTIDA =======================
+app.post('/historic-partida', async (req, res) => {
+  try {
+    await db.insertHistoricPartida(req.body);
+    return res.sendStatus(200);
   } catch(err) {
     return res.status(400).send(err);
   }

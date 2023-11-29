@@ -396,6 +396,16 @@ async function selectHistoricoJogador(nickname){
   return res.rows;
 }
 
+// ======================= CREATE HISTORICO && PARTIDA =======================
+async function insertHistoricPartida(body){
+  const client = await connect();
+  const sql = `
+    CALL criar_partida_e_historico($1, $2, $3);
+  `
+  const values = [body.nickname, body.pontuacao, body.nivel];
+  await client.query(sql, values);
+}
+
 module.exports = {
   selectJogadores,
   selectJogador,
@@ -441,5 +451,6 @@ module.exports = {
   insertHistorico,
   updateHistorico,
   deleteHistorico,
-  selectHistoricoJogador
+  selectHistoricoJogador,
+  insertHistoricPartida
 }
