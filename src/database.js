@@ -389,7 +389,7 @@ async function selectHistoricoJogador(nickname){
     SELECT H.id_jogador, P.*
     FROM Partida P
     JOIN Historico H ON H.id_partida = P.id_partida
-    WHERE H.id_jogador=$1;
+    WHERE H.id_jogador ~* $1;
   `
   const values = [nickname];
   const res = await client.query(sql, values);
@@ -404,6 +404,84 @@ async function insertHistoricPartida(body){
   `
   const values = [body.nickname, body.pontuacao, body.nivel];
   await client.query(sql, values);
+}
+
+// =========================== PESQUISAS ======================================
+async function filterJogador(name){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Jogador j
+    WHERE j.nickname ~* $1;
+  `;
+  const values = [name];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
+async function filterAssunto(name){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Assunto a
+    WHERE a.nome ~* $1;
+  `;
+  const values = [name];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
+async function filterProblema(nivel){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Problema p
+    WHERE p.nivel = $1;
+  `;
+  const values = [nivel];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
+async function filterDesafio(nivel){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Desafio d
+    WHERE d.nivel = $1;
+  `;
+  const values = [nivel];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
+async function filterPartida(nivel){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Partida p
+    WHERE p.nivel = $1;
+  `;
+  const values = [nivel];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
+async function filterArmas(nome){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Armas a
+    WHERE a.nome ~* $1;
+  `;
+  const values = [nome];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
+async function filterSkins(nome){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Skins s
+    WHERE s.nome ~* $1;
+  `;
+  const values = [nome];
+  const res = await client.query(sql, values);
+  return res.rows;
 }
 
 module.exports = {
@@ -452,5 +530,12 @@ module.exports = {
   updateHistorico,
   deleteHistorico,
   selectHistoricoJogador,
-  insertHistoricPartida
+  insertHistoricPartida,
+  filterJogador,
+  filterAssunto,
+  filterProblema,
+  filterDesafio,
+  filterPartida,
+  filterArmas,
+  filterSkins
 }

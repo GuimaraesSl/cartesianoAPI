@@ -479,3 +479,67 @@ app.post('/historic-partida', async (req, res) => {
     return res.status(400).send(err);
   }
 })
+
+// =========================== PESQUISAS =======================================
+app.get('/filter/jogador/:name', async (req, res) => {
+  try {
+    const asw = await db.filterJogador(req.params.name);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
+
+app.get('/filter/assunto/:name', async (req, res) => {
+  try {
+    const asw = await db.filterAssunto(req.params.name);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
+
+app.get('/filter/problema/:nivel', async (req, res) => {
+  try {
+    const asw = await db.filterProblema(req.params.nivel);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
+
+app.get('/filter/desafio/:nivel', async (req, res) => {
+  try {
+    const asw = await db.filterDesafio(req.params.nivel);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
+
+app.get('/filter/partida/:nivel', async (req, res) => {
+  try {
+    const asw = await db.filterPartida(req.params.nivel);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
+
+app.get('/filter/armas/:nome', async (req, res) => {
+  try {
+    const asw = await db.filterArmas(req.params.nome);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
+
+app.get('/filter/skins/:nome', async (req, res) => {
+  try {
+    const asw = await db.filterSkins(req.params.nome);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
