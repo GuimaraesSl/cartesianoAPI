@@ -484,6 +484,17 @@ async function filterSkins(nome){
   return res.rows;
 }
 
+async function filterHistorico(nome){
+  const client = await connect();
+  const sql = `
+    SELECT * FROM Historico h
+    WHERE h.id_jogador ~* $1;
+  `;
+  const values = [nome];
+  const res = await client.query(sql, values);
+  return res.rows;
+}
+
 module.exports = {
   selectJogadores,
   selectJogador,
@@ -537,5 +548,6 @@ module.exports = {
   filterDesafio,
   filterPartida,
   filterArmas,
-  filterSkins
+  filterSkins,
+  filterHistorico
 }

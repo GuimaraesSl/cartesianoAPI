@@ -543,3 +543,12 @@ app.get('/filter/skins/:nome', async (req, res) => {
     return res.status(400).send(err);
   }
 });
+
+app.get('/filter/historico/:nome', async (req, res) => {
+  try {
+    const asw = await db.filterHistorico(req.params.nome);
+    return res.status(200).send(asw);
+  } catch(err) {
+    return res.status(400).send(err);
+  }
+});
